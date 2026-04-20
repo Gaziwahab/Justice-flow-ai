@@ -618,11 +618,11 @@ function TestimonyContent() {
       </AnimatePresence>
 
       {/* ===== LEFT SIDEBAR ===== */}
-      <div className="w-72 shrink-0 flex flex-col border-r hidden lg:flex" style={{ borderColor: 'rgba(30,42,80,0.4)', background: 'rgba(8,12,26,0.6)', backdropFilter: 'blur(20px)' }}>
+      <div className="w-72 shrink-0 flex flex-col border-r hidden lg:flex bg-sidebar/60 backdrop-blur-xl border-border">
         {/* Steps */}
         <div className="p-5 flex-1 overflow-y-auto">
           {/* Session Name (editable) */}
-          <div className="mb-5 pb-4 border-b" style={{ borderColor: 'rgba(30,42,80,0.3)' }}>
+          <div className="mb-5 pb-4 border-b border-border/30">
             <p className="text-[10px] text-white/25 uppercase tracking-widest mb-1.5">Testimony Name</p>
             <input 
               type="text"
@@ -646,12 +646,12 @@ function TestimonyContent() {
               const isActive = currentStep === step.id
               const isDone = currentStep > step.id
               return (
-                <div key={step.id} className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? "bg-[#818cf8]/10 border border-[#818cf8]/20" : "hover:bg-white/5"}`}>
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isDone ? "bg-emerald-500/20" : isActive ? "bg-[#818cf8]/20" : "bg-white/5"}`}>
-                    {isDone ? <Check className="w-4 h-4 text-emerald-400" /> : <step.icon className={`w-4 h-4 ${isActive ? "text-[#818cf8]" : "text-white/30"}`} />}
+                <div key={step.id} className={`flex items-center gap-3 px-3 py-3 rounded-xl transition-all ${isActive ? "bg-primary/10 border border-primary/20" : "hover:bg-foreground/5"}`}>
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${isDone ? "bg-emerald-500/20" : isActive ? "bg-primary/20" : "bg-foreground/5"}`}>
+                    {isDone ? <Check className="w-4 h-4 text-emerald-500" /> : <step.icon className={`w-4 h-4 ${isActive ? "text-primary" : "text-foreground/30"}`} />}
                   </div>
                   <div>
-                    <p className={`text-sm font-medium ${isActive ? "text-white/90" : isDone ? "text-white/50" : "text-white/30"}`}>{step.label}</p>
+                    <p className={`text-sm font-medium ${isActive ? "text-foreground/90" : isDone ? "text-foreground/50" : "text-foreground/30"}`}>{step.label}</p>
                     <p className="text-xs text-white/20">{step.description}</p>
                   </div>
                 </div>
@@ -665,7 +665,7 @@ function TestimonyContent() {
             <div className="grid grid-cols-2 gap-2">
               {EMOTION_STATES.map((es) => (
                 <button key={es.value} onClick={() => handleEmotionButton(es.value, es.level)}
-                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${emotionState === es.value ? "bg-[#818cf8]/20 border border-[#818cf8]/30 text-white/90" : "bg-white/5 text-white/40 hover:bg-white/8 hover:text-white/60"}`}>
+                  className={`flex items-center gap-2 px-3 py-2.5 rounded-xl text-xs font-medium transition-all ${emotionState === es.value ? "bg-primary/20 border border-primary/30 text-foreground/90" : "bg-foreground/5 text-foreground/40 hover:bg-foreground/8 hover:text-foreground/60"}`}>
                   <span>{es.emoji}</span>{es.label}
                 </button>
               ))}
@@ -691,9 +691,9 @@ function TestimonyContent() {
         </div>
 
         {/* Save button */}
-        <div className="p-4 border-t" style={{ borderColor: 'rgba(30,42,80,0.3)' }}>
+        <div className="p-4 border-t border-border/30">
           <button onClick={() => router.push("/dashboard")}
-            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm text-white/40 hover:text-white/70 transition-colors hover:bg-white/5">
+            className="w-full flex items-center justify-center gap-2 py-2.5 rounded-xl text-sm text-foreground/40 hover:text-foreground/70 transition-colors hover:bg-foreground/5">
             <Save className="w-4 h-4" /> Save & exit
           </button>
         </div>
@@ -702,7 +702,7 @@ function TestimonyContent() {
       {/* ===== MAIN CONVERSATION AREA ===== */}
       <div className="flex-1 flex flex-col min-w-0 overflow-hidden">
         {/* Header bar */}
-        <div className="shrink-0 flex items-center justify-between px-6 py-4 border-b" style={{ borderColor: 'rgba(30,42,80,0.3)', background: 'rgba(8,12,26,0.4)', backdropFilter: 'blur(12px)' }}>
+        <div className="shrink-0 flex items-center justify-between px-6 py-4 border-b bg-background/40 backdrop-blur-md border-border/30">
           <div className="flex items-center gap-3">
             <AriaAvatar supportLevel={emotionalSense.supportLevel} />
             <div>
@@ -731,8 +731,8 @@ function TestimonyContent() {
         <AnimatePresence>
           {showBreathing && (
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-              className="absolute inset-0 z-40 flex items-center justify-center p-8"
-              style={{ background: 'rgba(8,12,26,0.92)', backdropFilter: 'blur(20px)' }}>
+              className="absolute inset-0 z-40 flex items-center justify-center p-8 bg-background/90 backdrop-blur-2xl"
+            >
               <div className="max-w-sm w-full">
                 <BreathingExercise onDone={() => setShowBreathing(false)} />
               </div>

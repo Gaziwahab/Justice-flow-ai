@@ -167,11 +167,8 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen p-8 lg:p-12 relative overflow-y-auto w-full" style={{ 
-      background: '#0B1021',
-      backgroundImage: `radial-gradient(ellipse at top, rgba(13,18,37,0.3) 0%, transparent 70%), linear-gradient(180deg, rgba(8,12,26,1) 0%, #080C1A 100%), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-    }}>
-      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full" style={{ background: 'radial-gradient(circle at 15% 50%, rgba(129,140,248,0.03) 0%, transparent 50%), radial-gradient(circle at 85% 30%, rgba(20,184,166,0.02) 0%, transparent 50%)' }} />
+    <div className="page-surface p-8 lg:p-12 relative overflow-y-auto w-full">
+      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full" style={{ background: 'radial-gradient(circle at 15% 50%, var(--glass-glow) 0%, transparent 50%)' }} />
 
       <div className="relative z-10 max-w-5xl mx-auto">
         {/* Header */}
@@ -187,10 +184,10 @@ export default function DashboardPage() {
               <span className="text-xs font-semibold text-amber-500 uppercase tracking-widest">{isAnonymous ? "Anonymous Mode" : "Secure Mode"}</span>
             </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-serif text-white mb-3">
+          <h1 className="text-4xl md:text-5xl font-serif text-foreground mb-3">
             {isAnonymous ? "Anonymous Session" : userName ? `Welcome, ${userName}` : "Anonymous Session"}
           </h1>
-          <p className="text-white/40 text-lg">
+          <p className="text-muted-foreground text-lg">
             Your privacy is fully protected. {isAnonymous && "No account is required."}
           </p>
         </motion.div>
@@ -205,22 +202,18 @@ export default function DashboardPage() {
           <button 
             onClick={handleCreateSessionClick}
             disabled={isCreating}
-            className="w-full relative overflow-hidden rounded-[2rem] text-left transition-all duration-500 hover:scale-[1.01] group"
-            style={{ 
-              background: '#0d1222', 
-              border: '1px solid rgba(129,140,248,0.15)',
-              boxShadow: '0 20px 40px -15px rgba(0,0,0,0.5)'
-            }}
+            className="w-full relative overflow-hidden rounded-[2rem] text-left transition-all duration-500 hover:scale-[1.01] group surface-card"
+            style={{ boxShadow: '0 20px 40px -15px rgba(0,0,0,0.2)' }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-[#818cf8]/5 via-transparent to-teal-500/5 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
             
             <div className="p-10 md:p-14 relative z-10 flex flex-col md:flex-row items-center justify-between min-h-[300px]">
               <div className="mb-8 md:mb-0 md:max-w-md h-full flex flex-col justify-center text-center md:text-left">
-                <span className="text-[#38bdf8] text-xs font-bold uppercase tracking-[0.2em] mb-4 block">New Session</span>
-                <h2 className="text-4xl md:text-5xl font-serif text-white mb-6 leading-tight">
+                <span className="label-accent mb-4 block">New Session</span>
+                <h2 className="text-4xl md:text-5xl font-serif text-foreground mb-6 leading-tight">
                   Start New<br/>Testimony
                 </h2>
-                <div className="flex items-center justify-center md:justify-start text-white/50 text-sm group-hover:text-white/80 transition-colors">
+                <div className="flex items-center justify-center md:justify-start text-muted-foreground text-sm group-hover:text-foreground transition-colors">
                   {isCreating ? "Initializing secure session..." : "Click to begin your safe space"}
                   {!isCreating && <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-2" />}
                 </div>
@@ -242,57 +235,57 @@ export default function DashboardPage() {
           className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
         >
           {/* Card 1 */}
-          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all hover:bg-white/[0.02]" style={{ background: 'transparent', border: '1px solid rgba(129,140,248,0.1)' }}>
+          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all surface-card hover:border-primary/30">
             <div className="flex items-start justify-between mb-4">
               <div className="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20">
-                <FileText className="w-5 h-5 text-blue-400 group-hover:scale-110 transition-transform" />
+                <FileText className="w-5 h-5 text-blue-500 group-hover:scale-110 transition-transform" />
               </div>
-              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 uppercase tracking-wider">Active</span>
+              <span className="text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Active</span>
             </div>
-            <p className="text-3xl font-bold text-white mb-1 font-display">{sessions.length}</p>
-            <p className="text-xs text-white/40">Total Sessions</p>
+            <p className="text-3xl font-bold text-foreground mb-1 font-display">{sessions.length}</p>
+            <p className="text-xs text-muted-foreground">Total Sessions</p>
           </div>
           
           {/* Card 2 */}
-          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all hover:bg-white/[0.02]" style={{ background: 'transparent', border: '1px solid rgba(129,140,248,0.1)' }}>
+          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all surface-card hover:border-primary/30">
             <div className="flex items-start justify-between mb-4">
               <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center border border-purple-500/20">
-                <Mic className="w-5 h-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                <Mic className="w-5 h-5 text-purple-500 group-hover:scale-110 transition-transform" />
               </div>
-              <div className="text-emerald-400 flex items-center">
+              <div className="text-emerald-500 flex items-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5">
                   <path d="M22 7l-13.5 13.5-8.5-8.5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
             </div>
-            <p className="text-3xl font-bold text-white mb-1 font-display">{sessions.filter(s => s.status === "completed").length}</p>
-            <p className="text-xs text-white/40">Completed</p>
+            <p className="text-3xl font-bold text-foreground mb-1 font-display">{sessions.filter(s => s.status === "completed").length}</p>
+            <p className="text-xs text-muted-foreground">Completed</p>
           </div>
 
           {/* Card 3 */}
-          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all hover:bg-white/[0.02]" style={{ background: 'transparent', border: '1px solid rgba(129,140,248,0.1)' }}>
+          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all surface-card hover:border-primary/30">
             <div className="flex items-start justify-between mb-4">
               <div className="w-10 h-10 rounded-xl bg-amber-500/10 flex items-center justify-center border border-amber-500/20">
-                <Calendar className="w-5 h-5 text-amber-400 group-hover:scale-110 transition-transform" />
+                <Calendar className="w-5 h-5 text-amber-500 group-hover:scale-110 transition-transform" />
               </div>
-              <Clock className="w-4 h-4 text-white/20 mt-1" />
+              <Clock className="w-4 h-4 text-muted-foreground mt-1" />
             </div>
-            <p className="text-3xl font-bold text-white mb-1 font-display">{sessions.filter(s => s.status === "in_progress").length}</p>
-            <p className="text-xs text-white/40">In Progress</p>
+            <p className="text-3xl font-bold text-foreground mb-1 font-display">{sessions.filter(s => s.status === "in_progress").length}</p>
+            <p className="text-xs text-muted-foreground">In Progress</p>
           </div>
 
           {/* Card 4 */}
-          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all hover:bg-white/[0.02]" style={{ background: 'transparent', border: '1px solid rgba(129,140,248,0.1)' }}>
+          <div className="rounded-2xl p-5 relative overflow-hidden group transition-all surface-card hover:border-primary/30">
             <div className="flex items-start justify-between mb-4">
               <div className="w-10 h-10 rounded-xl bg-teal-500/10 flex items-center justify-center border border-teal-500/20">
-                <Shield className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
+                <Shield className="w-5 h-5 text-teal-500 group-hover:scale-110 transition-transform" />
               </div>
               <div className="w-5 h-5 rounded-full bg-emerald-500/20 flex items-center justify-center mt-1 border border-emerald-500/20">
-                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
+                <CheckCircle2 className="w-3 h-3 text-emerald-500" />
               </div>
             </div>
-            <p className="text-2xl font-bold text-white mb-1 font-display mt-2">256-bit</p>
-            <p className="text-xs text-white/40 mt-1">Encryption</p>
+            <p className="text-2xl font-bold text-foreground mb-1 font-display mt-2">256-bit</p>
+            <p className="text-xs text-muted-foreground mt-1">Encryption</p>
           </div>
         </motion.div>
 
@@ -304,24 +297,23 @@ export default function DashboardPage() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="mb-12"
           >
-            <h2 className="text-lg font-semibold mb-6 text-white/90 font-serif">Recent History</h2>
+            <h2 className="text-lg font-semibold mb-6 text-foreground/90 font-serif">Recent History</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {sessions.map((session) => (
                 <div
                   key={session.id}
-                  className="rounded-2xl p-5 flex items-center justify-between transition-all group hover:bg-white/[0.02]"
-                  style={{ background: 'rgba(13,18,37,0.4)', border: '1px solid rgba(129,140,248,0.1)' }}
+                  className="rounded-2xl p-5 flex items-center justify-between transition-all group surface-card hover:border-primary/30"
                 >
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 rounded-xl bg-[#818cf8]/10 flex items-center justify-center shrink-0 border border-[#818cf8]/20 group-hover:bg-[#818cf8]/20 transition-colors">
-                      <Clock className="w-5 h-5 text-[#818cf8]" />
+                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20 group-hover:bg-primary/20 transition-colors">
+                      <Clock className="w-5 h-5 text-primary" />
                     </div>
                     <div>
-                      <h3 className="font-semibold text-white/90 text-sm">{session.title}</h3>
+                      <h3 className="font-semibold text-foreground/90 text-sm">{session.title}</h3>
                       <div className="flex items-center gap-2 mt-1">
-                        <span className="text-xs text-white/30">{formatDate(session.updated_at)}</span>
-                        <div className="w-1 h-1 rounded-full bg-white/20" />
-                        <span className="text-[10px] text-white/40 uppercase tracking-widest">{session.status?.replace("_", " ") || "DRAFT"}</span>
+                        <span className="text-xs text-muted-foreground">{formatDate(session.updated_at)}</span>
+                        <div className="w-1 h-1 rounded-full bg-border" />
+                        <span className="text-[10px] text-muted-foreground uppercase tracking-widest">{session.status?.replace("_", " ") || "DRAFT"}</span>
                       </div>
                     </div>
                   </div>
@@ -330,12 +322,12 @@ export default function DashboardPage() {
                       variant="ghost"
                       size="icon"
                       onClick={() => handleDeleteSession(session.id)}
-                      className="text-white/20 hover:text-red-400 hover:bg-red-500/10 rounded-xl transition-colors"
+                      className="text-muted-foreground hover:text-red-500 hover:bg-red-500/10 rounded-xl transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
                     </Button>
                     <Link href={`/dashboard/testimony?session=${session.id}`}>
-                      <Button variant="outline" className="border-[#818cf8]/30 hover:bg-[#818cf8]/10 text-white rounded-xl bg-white/5 transition-colors">
+                      <Button variant="outline" className="border-primary/30 hover:bg-primary/10 rounded-xl transition-colors">
                         <ArrowRight className="w-4 h-4" />
                       </Button>
                     </Link>
@@ -354,22 +346,20 @@ export default function DashboardPage() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6"
-            style={{ background: 'rgba(8,12,26,0.85)', backdropFilter: 'blur(20px)' }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-6 modal-overlay"
           >
             <motion.div
               initial={{ scale: 0.95, y: 10 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 10 }}
-              className="relative w-full max-w-md p-8 rounded-3xl"
-              style={{ background: 'rgba(13,18,37,0.9)', border: '1px solid rgba(129,140,248,0.2)', boxShadow: '0 25px 50px -12px rgba(0,0,0,0.5)' }}
+              className="relative w-full max-w-md p-8 rounded-3xl modal-panel"
             >
               <div className="mb-6">
-                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4" style={{ background: 'rgba(129,140,248,0.15)', border: '1px solid rgba(129,140,248,0.3)' }}>
-                  <Plus className="w-6 h-6 text-[#818cf8]" />
+                <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-4 bg-primary/15 border border-primary/30">
+                  <Plus className="w-6 h-6 text-primary" />
                 </div>
-                <h2 className="text-2xl font-bold text-white/95 mb-2">Name your testimony</h2>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <h2 className="text-2xl font-bold text-foreground mb-2">Name your testimony</h2>
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   Give this testimony a clear name so you can easily find it later. You can always change it.
                 </p>
               </div>
@@ -381,7 +371,7 @@ export default function DashboardPage() {
                     value={testimonyName}
                     onChange={(e) => setTestimonyName(e.target.value)}
                     placeholder="e.g. Incident at work - March 2026"
-                    className="w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white/90 placeholder:text-white/30 focus:outline-none focus:border-[#818cf8]/50 transition-colors"
+                    className="w-full px-4 py-3 rounded-xl input-surface focus:outline-none focus:ring-2 focus:ring-primary/50 transition-colors"
                     autoFocus
                     onKeyDown={(e) => {
                       if (e.key === "Enter") handleConfirmCreateSession()
@@ -392,15 +382,14 @@ export default function DashboardPage() {
                 <div className="flex gap-3 pt-4">
                   <button
                     onClick={() => setShowNameModal(false)}
-                    className="flex-1 py-3 rounded-xl text-sm font-medium text-white/50 hover:text-white/80 hover:bg-white/5 transition-colors border border-transparent"
+                    className="flex-1 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors border border-border"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleConfirmCreateSession}
                     disabled={isCreating}
-                    className="flex-1 py-3 rounded-xl text-sm font-medium text-white transition-all hover:opacity-90 flex items-center justify-center gap-2 disabled:opacity-50"
-                    style={{ background: 'linear-gradient(135deg, #6366f1, #818cf8)' }}
+                    className="flex-1 py-3 rounded-xl text-sm font-medium text-primary-foreground transition-all hover:opacity-90 flex items-center justify-center gap-2 disabled:opacity-50 bg-gradient-to-r from-primary to-accent"
                   >
                     {isCreating ? 'Creating...' : 'Create Session'} 
                     {!isCreating && <ArrowRight className="w-4 h-4" />}

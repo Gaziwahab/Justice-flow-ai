@@ -380,27 +380,23 @@ END OF REPORT — SecureVoice Confidential
 
   if (isLoading) return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="w-10 h-10 border-2 border-[#818cf8] border-t-transparent rounded-full animate-spin" />
+      <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
     </div>
   )
 
   return (
-    <div className="min-h-screen relative overflow-y-auto w-full" style={{ 
-      background: '#0B1021',
-      backgroundImage: `radial-gradient(ellipse at top, rgba(13,18,37,0.3) 0%, transparent 70%), linear-gradient(180deg, rgba(8,12,26,1) 0%, #080C1A 100%), url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
-    }}>
-      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full" style={{ background: 'radial-gradient(circle at 15% 50%, rgba(129,140,248,0.03) 0%, transparent 50%), radial-gradient(circle at 85% 30%, rgba(20,184,166,0.02) 0%, transparent 50%)' }} />
+    <div className="page-surface relative overflow-y-auto w-full">
+      <div className="absolute inset-0 z-0 pointer-events-none w-full h-full" style={{ background: 'radial-gradient(circle at 15% 50%, var(--glass-glow) 0%, transparent 50%)' }} />
       <div className="relative z-10 p-6 md:p-8 max-w-5xl mx-auto">
       {/* Header */}
       <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} className="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-2xl flex items-center justify-center"
-            style={{ background: 'rgba(129,140,248,0.12)', border: '1px solid rgba(129,140,248,0.25)' }}>
-            <Brain className="w-6 h-6 text-[#818cf8]" />
+          <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-primary/12 border border-primary/25">
+            <Brain className="w-6 h-6 text-primary" />
           </div>
           <div>
-            <h1 className="text-2xl font-bold text-white/95">Structured Intelligence Report</h1>
-            <p className="text-sm text-white/40 mt-0.5">AI-powered analysis of your testimony</p>
+            <h1 className="text-2xl font-bold text-foreground">Structured Intelligence Report</h1>
+            <p className="text-sm text-muted-foreground mt-0.5">AI-powered analysis of your testimony</p>
           </div>
         </div>
 
@@ -409,8 +405,7 @@ END OF REPORT — SecureVoice Confidential
           <select 
             value={activeSessionId || ""}
             onChange={(e) => setActiveSessionId(e.target.value)}
-            className="px-4 py-2 rounded-xl text-sm font-medium outline-none cursor-pointer border transition-colors min-w-[200px]"
-            style={{ background: 'rgba(13,18,37,0.8)', color: 'white', borderColor: 'rgba(255,255,255,0.1)' }}
+            className="px-4 py-2 rounded-xl text-sm font-medium outline-none cursor-pointer border transition-colors min-w-[200px] input-surface"
           >
             {sessionsList.map(s => (
               <option key={s.id} value={s.id}>
@@ -424,10 +419,10 @@ END OF REPORT — SecureVoice Confidential
       {/* Data stats */}
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.05 }} className="mb-8">
         <div className="flex items-center gap-4 flex-wrap">
-          <span className="text-xs px-3 py-1 rounded-full" style={{ background: 'rgba(129,140,248,0.1)', color: '#818cf8', border: '1px solid rgba(129,140,248,0.2)' }}>
+          <span className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20">
             {rawFragments.length} fragments
           </span>
-          <span className="text-xs px-3 py-1 rounded-full" style={{ background: 'rgba(52,211,153,0.1)', color: '#34d399', border: '1px solid rgba(52,211,153,0.2)' }}>
+          <span className="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
             {evidence.length} evidence files
           </span>
           {report && (
@@ -441,17 +436,16 @@ END OF REPORT — SecureVoice Confidential
       {/* Generate button (if no report yet) */}
       {!report && (
         <motion.div initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-          className="p-8 rounded-2xl text-center mb-8"
-          style={{ background: 'rgba(129,140,248,0.06)', border: '1px solid rgba(129,140,248,0.15)' }}>
-          <Sparkles className="w-12 h-12 text-[#818cf8]/60 mx-auto mb-4" />
-          <h2 className="text-xl font-semibold text-white/85 mb-2">Generate Structured Report</h2>
-          <p className="text-sm text-white/40 max-w-md mx-auto mb-6">
+          className="p-8 rounded-2xl text-center mb-8 glass-card"
+        >
+          <Sparkles className="w-12 h-12 text-primary/60 mx-auto mb-4" />
+          <h2 className="text-xl font-semibold text-foreground/85 mb-2">Generate Structured Report</h2>
+          <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">
             The AI Structure Engine will analyze all {rawFragments.length} testimony fragments, 
             extract entities, build a timeline, assess legal strength, and identify gaps.
           </p>
           <button onClick={generateReport} disabled={isGenerating || rawFragments.length === 0}
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-30"
-            style={{ background: 'linear-gradient(135deg, #6366f1, #818cf8)', color: 'white' }}>
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-30 bg-primary text-primary-foreground">
             {isGenerating ? (
               <><Loader2 className="w-4 h-4 animate-spin" /> Analyzing testimony…</>
             ) : (
@@ -459,7 +453,7 @@ END OF REPORT — SecureVoice Confidential
             )}
           </button>
           {rawFragments.length === 0 && (
-            <p className="text-xs text-amber-400/70 mt-3">Share your story first in the Testimony section</p>
+            <p className="text-xs text-amber-500/70 mt-3">Share your story first in the Testimony section</p>
           )}
         </motion.div>
       )}
@@ -468,8 +462,7 @@ END OF REPORT — SecureVoice Confidential
       {report && (
         <div ref={reportRef}>
           {/* Tab navigation */}
-          <div className="flex gap-1 p-1 rounded-full mb-6 w-fit"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}>
+          <div className="flex gap-1 p-1 rounded-full mb-6 w-fit bg-secondary border border-border">
             {[
               { key: "overview" as const, label: "Overview", icon: FileText },
               { key: "timeline" as const, label: "Timeline", icon: Clock },
@@ -478,8 +471,7 @@ END OF REPORT — SecureVoice Confidential
               { key: "legaldocs" as const, label: "Legal Docs", icon: Building },
             ].map(tab => (
               <button key={tab.key} onClick={() => setActiveTab(tab.key)}
-                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all ${activeTab === tab.key ? "text-[#818cf8]" : "text-white/30 hover:text-white/60"}`}
-                style={activeTab === tab.key ? { background: 'rgba(129,140,248,0.15)' } : {}}>
+                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-medium transition-all ${activeTab === tab.key ? "bg-primary/15 text-primary" : "text-muted-foreground hover:text-foreground"}`}>
                 <tab.icon className="w-3.5 h-3.5" /> {tab.label}
               </button>
             ))}
@@ -488,23 +480,19 @@ END OF REPORT — SecureVoice Confidential
           {/* Actions bar */}
           <div className="flex gap-2 mb-6">
             <button onClick={generateReport} disabled={isGenerating}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white/40 hover:text-white/70 transition-colors"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground transition-colors border border-border">
               {isGenerating ? <Loader2 className="w-3 h-3 animate-spin" /> : <Sparkles className="w-3 h-3" />} Regenerate
             </button>
             <button onClick={handleDownload}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white/40 hover:text-white/70 transition-colors"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground transition-colors border border-border">
               <Download className="w-3 h-3" /> Download
             </button>
             <button onClick={handleCopy}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white/40 hover:text-white/70 transition-colors"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground transition-colors border border-border">
               {copied ? <><Check className="w-3 h-3" /> Copied</> : <><Copy className="w-3 h-3" /> Copy</>}
             </button>
             <button onClick={() => window.print()}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-white/40 hover:text-white/70 transition-colors"
-              style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs text-muted-foreground hover:text-foreground transition-colors border border-border">
               <Printer className="w-3 h-3" /> Print
             </button>
           </div>
@@ -514,14 +502,13 @@ END OF REPORT — SecureVoice Confidential
             {activeTab === "overview" && (
               <motion.div key="overview" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-5">
                 {/* Case Summary */}
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(129,140,248,0.06)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/60 mb-2 flex items-center gap-2">
-                    <Shield className="w-4 h-4 text-[#818cf8]" /> Case Summary
+                <div className="p-5 rounded-2xl glass-card">
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-2 flex items-center gap-2">
+                    <Shield className="w-4 h-4 text-primary" /> Case Summary
                   </h3>
-                  <p className="text-sm text-white/80 leading-relaxed">{report.case_summary}</p>
+                  <p className="text-sm text-foreground/80 leading-relaxed">{report.case_summary}</p>
                   <div className="flex gap-3 mt-3">
-                    <span className="text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider"
-                      style={{ background: 'rgba(129,140,248,0.12)', color: '#818cf8' }}>
+                    <span className="text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider bg-primary/12 text-primary">
                       {report.incident_type.replace(/_/g, " ")}
                     </span>
                     <span className={`text-[10px] px-2 py-0.5 rounded-full uppercase tracking-wider border ${SEVERITY_COLORS[report.severity_assessment] || ""}`}>
@@ -531,31 +518,31 @@ END OF REPORT — SecureVoice Confidential
                 </div>
 
                 {/* Legal Strength Gauge */}
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/60 mb-3 flex items-center gap-2">
-                    <Scale className="w-4 h-4 text-[#818cf8]" /> Legal Strength
+                <div className="p-5 rounded-2xl surface-card">
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-3 flex items-center gap-2">
+                    <Scale className="w-4 h-4 text-primary" /> Legal Strength
                   </h3>
                   <div className="flex items-center gap-4 mb-3">
-                    <div className="text-4xl font-bold text-[#818cf8]">{report.legal_strength.score}<span className="text-lg text-white/30">/10</span></div>
-                    <div className="flex-1 h-3 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                    <div className="text-4xl font-bold text-primary">{report.legal_strength.score}<span className="text-lg text-muted-foreground/50">/10</span></div>
+                    <div className="flex-1 h-3 rounded-full overflow-hidden bg-secondary">
                       <div className="h-full rounded-full transition-all duration-700"
                         style={{ width: `${report.legal_strength.score * 10}%`, background: report.legal_strength.score >= 7 ? '#34d399' : report.legal_strength.score >= 4 ? '#fbbf24' : '#ef4444' }} />
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 mt-4">
                     <div>
-                      <p className="text-[10px] text-emerald-400 font-semibold mb-1 uppercase tracking-wider">Strengths</p>
+                      <p className="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold mb-1 uppercase tracking-wider">Strengths</p>
                       {report.legal_strength.strengths.map((s, i) => (
-                        <p key={i} className="text-xs text-white/50 flex items-start gap-1.5 mb-1">
-                          <CheckCircle className="w-3 h-3 text-emerald-400 shrink-0 mt-0.5" /> {s}
+                        <p key={i} className="text-xs text-muted-foreground flex items-start gap-1.5 mb-1">
+                          <CheckCircle className="w-3 h-3 text-emerald-500 shrink-0 mt-0.5" /> {s}
                         </p>
                       ))}
                     </div>
                     <div>
-                      <p className="text-[10px] text-amber-400 font-semibold mb-1 uppercase tracking-wider">Weaknesses</p>
+                      <p className="text-[10px] text-amber-600 dark:text-amber-400 font-semibold mb-1 uppercase tracking-wider">Weaknesses</p>
                       {report.legal_strength.weaknesses.map((w, i) => (
-                        <p key={i} className="text-xs text-white/50 flex items-start gap-1.5 mb-1">
-                          <AlertCircle className="w-3 h-3 text-amber-400 shrink-0 mt-0.5" /> {w}
+                        <p key={i} className="text-xs text-muted-foreground flex items-start gap-1.5 mb-1">
+                          <AlertCircle className="w-3 h-3 text-amber-500 shrink-0 mt-0.5" /> {w}
                         </p>
                       ))}
                     </div>
@@ -564,23 +551,23 @@ END OF REPORT — SecureVoice Confidential
 
                 {/* Pattern + Impact grid */}
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                    <h3 className="text-xs font-semibold text-white/50 mb-2 flex items-center gap-1.5">
-                      <TrendingUp className="w-3.5 h-3.5 text-[#818cf8]" /> Pattern Analysis
+                  <div className="p-4 rounded-2xl surface-card">
+                    <h3 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
+                      <TrendingUp className="w-3.5 h-3.5 text-primary" /> Pattern Analysis
                     </h3>
-                    <p className="text-sm text-white/80 mb-1">
+                    <p className="text-sm text-foreground/80 mb-1">
                       {report.pattern_analysis.is_pattern ? "⚠️ Pattern detected" : "Single incident"}
                     </p>
-                    <p className="text-xs text-white/40">Frequency: {report.pattern_analysis.frequency}</p>
-                    <p className="text-xs text-white/40">Escalation: {report.pattern_analysis.escalation}</p>
+                    <p className="text-xs text-muted-foreground">Frequency: {report.pattern_analysis.frequency}</p>
+                    <p className="text-xs text-muted-foreground">Escalation: {report.pattern_analysis.escalation}</p>
                     {report.pattern_analysis.pattern_description && (
-                      <p className="text-xs text-white/50 mt-2 italic">{report.pattern_analysis.pattern_description}</p>
+                      <p className="text-xs text-muted-foreground mt-2 italic">{report.pattern_analysis.pattern_description}</p>
                     )}
                   </div>
 
-                  <div className="p-4 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                    <h3 className="text-xs font-semibold text-white/50 mb-2 flex items-center gap-1.5">
-                      <Heart className="w-3.5 h-3.5 text-[#818cf8]" /> Impact
+                  <div className="p-4 rounded-2xl surface-card">
+                    <h3 className="text-xs font-semibold text-muted-foreground mb-2 flex items-center gap-1.5">
+                      <Heart className="w-3.5 h-3.5 text-primary" /> Impact
                     </h3>
                     {[
                       { label: "Emotional", items: report.impact_assessment.emotional },
@@ -588,8 +575,8 @@ END OF REPORT — SecureVoice Confidential
                       { label: "Social", items: report.impact_assessment.social },
                     ].filter(c => c.items.length > 0).map(cat => (
                       <div key={cat.label} className="mb-1.5">
-                        <p className="text-[10px] text-white/30 uppercase">{cat.label}</p>
-                        <p className="text-xs text-white/60">{cat.items.join(", ")}</p>
+                        <p className="text-[10px] text-muted-foreground/60 uppercase">{cat.label}</p>
+                        <p className="text-xs text-muted-foreground">{cat.items.join(", ")}</p>
                       </div>
                     ))}
                   </div>
@@ -597,17 +584,17 @@ END OF REPORT — SecureVoice Confidential
 
                 {/* Gaps */}
                 {report.gaps_and_clarifications.length > 0 && (
-                  <div className="p-5 rounded-2xl" style={{ background: 'rgba(251,191,36,0.05)', border: '1px solid rgba(251,191,36,0.15)' }}>
-                    <h3 className="text-sm font-semibold text-amber-400/80 mb-3 flex items-center gap-2">
+                  <div className="p-5 rounded-2xl glass-card">
+                    <h3 className="text-sm font-semibold text-amber-600 dark:text-amber-400 mb-3 flex items-center gap-2">
                       <HelpCircle className="w-4 h-4" /> Information Gaps ({report.gaps_and_clarifications.length})
                     </h3>
                     <div className="space-y-2">
                       {report.gaps_and_clarifications.map((gap, i) => (
                         <div key={i} className="flex items-start gap-2">
-                          <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase font-bold mt-0.5 ${gap.importance === "critical" ? "bg-red-500/20 text-red-400" : gap.importance === "helpful" ? "bg-yellow-500/15 text-yellow-400" : "bg-white/5 text-white/30"}`}>
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded uppercase font-bold mt-0.5 ${gap.importance === "critical" ? "bg-red-500/20 text-red-500" : gap.importance === "helpful" ? "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400" : "bg-secondary text-muted-foreground"}`}>
                             {gap.importance}
                           </span>
-                          <p className="text-xs text-white/50">{gap.question}</p>
+                          <p className="text-xs text-muted-foreground">{gap.question}</p>
                         </div>
                       ))}
                     </div>
@@ -620,41 +607,41 @@ END OF REPORT — SecureVoice Confidential
             {activeTab === "timeline" && (
               <motion.div key="timeline" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-4">
                 <div className="relative pl-8">
-                  <div className="absolute left-3 top-0 bottom-0 w-px" style={{ background: 'linear-gradient(to bottom, rgba(129,140,248,0.4), rgba(129,140,248,0.05))' }} />
+                  <div className="absolute left-3 top-0 bottom-0 w-px bg-border" />
                   {report.timeline_events.map((evt, i) => (
                     <div key={evt.id} className="relative mb-5">
                       <div className={`absolute left-[-23px] w-3 h-3 rounded-full ${evt.confidence === "high" ? "bg-emerald-400" : evt.confidence === "medium" ? "bg-yellow-400" : "bg-orange-400"}`} />
-                      <div className="p-4 rounded-xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
+                      <div className="p-4 rounded-xl surface-card">
                         <div className="flex items-center justify-between mb-2">
-                          <h4 className="text-sm font-semibold text-white/85">{evt.title}</h4>
+                          <h4 className="text-sm font-semibold text-foreground/85">{evt.title}</h4>
                           <span className={`text-[10px] ${CONFIDENCE_COLORS[evt.confidence] || ""}`}>{evt.confidence} confidence</span>
                         </div>
                         <div className="flex flex-wrap gap-2 mb-2">
                           {evt.date_raw !== "unknown" && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1" style={{ background: 'rgba(129,140,248,0.1)', color: '#818cf8' }}>
+                            <span className="text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 bg-primary/10 text-primary">
                               <Clock className="w-2.5 h-2.5" /> {evt.date_raw}
                             </span>
                           )}
                           {evt.location !== "unknown" && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1" style={{ background: 'rgba(52,211,153,0.1)', color: '#34d399' }}>
+                            <span className="text-[10px] px-2 py-0.5 rounded-full flex items-center gap-1 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
                               <MapPin className="w-2.5 h-2.5" /> {evt.location}
                             </span>
                           )}
                           {evt.time_of_day !== "unknown" && (
-                            <span className="text-[10px] px-2 py-0.5 rounded-full" style={{ background: 'rgba(255,255,255,0.05)', color: 'rgba(255,255,255,0.4)' }}>
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-secondary text-muted-foreground">
                               {evt.time_of_day}
                             </span>
                           )}
                         </div>
-                        <p className="text-xs text-white/60 leading-relaxed mb-2">{evt.description}</p>
+                        <p className="text-xs text-muted-foreground leading-relaxed mb-2">{evt.description}</p>
                         {evt.perpetrator_actions && (
-                          <p className="text-xs text-red-400/70 mb-1">⚠️ Perpetrator: {evt.perpetrator_actions}</p>
+                          <p className="text-xs text-red-500/70 mb-1">⚠️ Perpetrator: {evt.perpetrator_actions}</p>
                         )}
                         {evt.survivor_response && (
-                          <p className="text-xs text-white/40 mb-1">→ Response: {evt.survivor_response}</p>
+                          <p className="text-xs text-muted-foreground/70 mb-1">→ Response: {evt.survivor_response}</p>
                         )}
                         {evt.key_quotes.length > 0 && (
-                          <div className="mt-2 p-2 rounded-lg italic text-xs text-white/50" style={{ background: 'rgba(129,140,248,0.05)' }}>
+                          <div className="mt-2 p-2 rounded-lg italic text-xs text-muted-foreground bg-primary/5">
                             "{evt.key_quotes[0]}"
                           </div>
                         )}
@@ -669,60 +656,60 @@ END OF REPORT — SecureVoice Confidential
             {activeTab === "entities" && (
               <motion.div key="entities" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-5">
                 {/* People */}
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/60 flex items-center gap-2 mb-3">
-                    <Users className="w-4 h-4 text-[#818cf8]" /> People ({report.entities.people.length})
+                <div className="p-5 rounded-2xl surface-card">
+                  <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2 mb-3">
+                    <Users className="w-4 h-4 text-primary" /> People ({report.entities.people.length})
                   </h3>
                   <div className="space-y-3">
                     {report.entities.people.map((p, i) => (
-                      <div key={i} className="flex items-start gap-3 p-3 rounded-xl" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${p.role === "perpetrator" ? "bg-red-500/20 text-red-400" : p.role === "witness" ? "bg-blue-500/20 text-blue-400" : "bg-white/5 text-white/40"}`}>
+                      <div key={i} className="flex items-start gap-3 p-3 rounded-xl bg-secondary/50">
+                        <div className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 text-xs font-bold ${p.role === "perpetrator" ? "bg-red-500/20 text-red-500" : p.role === "witness" ? "bg-blue-500/20 text-blue-500" : "bg-secondary text-muted-foreground"}`}>
                           {p.name.charAt(0).toUpperCase()}
                         </div>
                         <div>
-                          <p className="text-sm text-white/80 font-medium">{p.name}</p>
-                          <p className="text-xs text-white/40">{p.role} — {p.relationship_to_survivor}</p>
-                          {p.description && <p className="text-xs text-white/30 mt-0.5">{p.description}</p>}
+                          <p className="text-sm text-foreground/80 font-medium">{p.name}</p>
+                          <p className="text-xs text-muted-foreground">{p.role} — {p.relationship_to_survivor}</p>
+                          {p.description && <p className="text-xs text-muted-foreground/60 mt-0.5">{p.description}</p>}
                         </div>
                       </div>
                     ))}
-                    {report.entities.people.length === 0 && <p className="text-xs text-white/30 italic">No people identified</p>}
+                    {report.entities.people.length === 0 && <p className="text-xs text-muted-foreground italic">No people identified</p>}
                   </div>
                 </div>
 
                 {/* Locations */}
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/60 flex items-center gap-2 mb-3">
-                    <MapPin className="w-4 h-4 text-[#818cf8]" /> Locations ({report.entities.locations.length})
+                <div className="p-5 rounded-2xl surface-card">
+                  <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2 mb-3">
+                    <MapPin className="w-4 h-4 text-primary" /> Locations ({report.entities.locations.length})
                   </h3>
                   <div className="space-y-2">
                     {report.entities.locations.map((l, i) => (
-                      <div key={i} className="p-3 rounded-xl flex items-center gap-3" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                        <MapPin className="w-4 h-4 text-emerald-400/60" />
+                      <div key={i} className="p-3 rounded-xl flex items-center gap-3 bg-secondary/50">
+                        <MapPin className="w-4 h-4 text-emerald-500/60" />
                         <div>
-                          <p className="text-sm text-white/80">{l.name} <span className="text-xs text-white/30">({l.type})</span></p>
-                          {l.significance && <p className="text-xs text-white/40">{l.significance}</p>}
+                          <p className="text-sm text-foreground/80">{l.name} <span className="text-xs text-muted-foreground">({l.type})</span></p>
+                          {l.significance && <p className="text-xs text-muted-foreground">{l.significance}</p>}
                         </div>
                       </div>
                     ))}
-                    {report.entities.locations.length === 0 && <p className="text-xs text-white/30 italic">No locations identified</p>}
+                    {report.entities.locations.length === 0 && <p className="text-xs text-muted-foreground italic">No locations identified</p>}
                   </div>
                 </div>
 
                 {/* Evidence Map */}
                 {report.evidence_map.length > 0 && (
-                  <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                    <h3 className="text-sm font-semibold text-white/60 flex items-center gap-2 mb-3">
-                      <Files className="w-4 h-4 text-[#818cf8]" /> Evidence Map
+                  <div className="p-5 rounded-2xl surface-card">
+                    <h3 className="text-sm font-semibold text-muted-foreground flex items-center gap-2 mb-3">
+                      <Files className="w-4 h-4 text-primary" /> Evidence Map
                     </h3>
                     <div className="space-y-2">
                       {report.evidence_map.map((e, i) => (
-                        <div key={i} className="flex items-center gap-3 p-2 rounded-lg" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                          <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase ${e.status === "uploaded" ? "bg-emerald-500/15 text-emerald-400" : e.status === "mentioned" ? "bg-yellow-500/15 text-yellow-400" : "bg-red-500/15 text-red-400"}`}>
+                        <div key={i} className="flex items-center gap-3 p-2 rounded-lg bg-secondary/30">
+                          <span className={`text-[9px] px-1.5 py-0.5 rounded font-bold uppercase ${e.status === "uploaded" ? "bg-emerald-500/15 text-emerald-600 dark:text-emerald-400" : e.status === "mentioned" ? "bg-yellow-500/15 text-yellow-600 dark:text-yellow-400" : "bg-red-500/15 text-red-500"}`}>
                             {e.status}
                           </span>
-                          <p className="text-xs text-white/60">{e.description}</p>
-                          <span className={`ml-auto text-[9px] px-1.5 py-0.5 rounded ${e.importance === "critical" ? "bg-red-500/10 text-red-400" : "bg-white/5 text-white/30"}`}>
+                          <p className="text-xs text-muted-foreground">{e.description}</p>
+                          <span className={`ml-auto text-[9px] px-1.5 py-0.5 rounded ${e.importance === "critical" ? "bg-red-500/10 text-red-500" : "bg-secondary text-muted-foreground/60"}`}>
                             {e.importance}
                           </span>
                         </div>
@@ -737,10 +724,10 @@ END OF REPORT — SecureVoice Confidential
             {activeTab === "legal" && (
               <motion.div key="legal" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-5">
                 {/* Score */}
-                <div className="p-6 rounded-2xl text-center" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <div className="text-6xl font-bold text-[#818cf8] mb-2">{report.legal_strength.score}<span className="text-2xl text-white/30">/10</span></div>
-                  <p className="text-sm text-white/40">Legal Case Strength Score</p>
-                  <div className="w-full max-w-xs mx-auto h-3 rounded-full overflow-hidden mt-4" style={{ background: 'rgba(255,255,255,0.06)' }}>
+                <div className="p-6 rounded-2xl text-center surface-card">
+                  <div className="text-6xl font-bold text-primary mb-2">{report.legal_strength.score}<span className="text-2xl text-muted-foreground/30">/10</span></div>
+                  <p className="text-sm text-muted-foreground">Legal Case Strength Score</p>
+                  <div className="w-full max-w-xs mx-auto h-3 rounded-full overflow-hidden mt-4 bg-secondary">
                     <div className="h-full rounded-full transition-all duration-1000"
                       style={{ width: `${report.legal_strength.score * 10}%`, background: report.legal_strength.score >= 7 ? '#34d399' : report.legal_strength.score >= 4 ? '#fbbf24' : '#ef4444' }} />
                   </div>
@@ -752,32 +739,32 @@ END OF REPORT — SecureVoice Confidential
                   { label: "Case Weaknesses", items: report.legal_strength.weaknesses, icon: AlertCircle, color: "text-amber-400", bg: "rgba(251,191,36,0.06)" },
                   { label: "Recommended Evidence to Collect", items: report.legal_strength.recommended_evidence, icon: Files, color: "text-[#818cf8]", bg: "rgba(129,140,248,0.06)" },
                 ].map(section => (
-                  <div key={section.label} className="p-5 rounded-2xl" style={{ background: section.bg, border: `1px solid ${section.bg.replace("0.06", "0.15")}` }}>
+                  <div key={section.label} className="p-5 rounded-2xl glass-card">
                     <h3 className={`text-sm font-semibold ${section.color} flex items-center gap-2 mb-3`}>
                       <section.icon className="w-4 h-4" /> {section.label}
                     </h3>
                     <ul className="space-y-1.5">
                       {section.items.map((item, i) => (
-                        <li key={i} className="text-xs text-white/60 flex items-start gap-2">
-                          <span className="text-white/20 mt-0.5">•</span> {item}
+                        <li key={i} className="text-xs text-muted-foreground flex items-start gap-2">
+                          <span className="text-muted-foreground/20 mt-0.5">•</span> {item}
                         </li>
                       ))}
-                      {section.items.length === 0 && <li className="text-xs text-white/30 italic">None identified</li>}
+                      {section.items.length === 0 && <li className="text-xs text-muted-foreground/30 italic">None identified</li>}
                     </ul>
                   </div>
                 ))}
 
                 {/* Reporting History */}
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/60 mb-3">Reporting History</h3>
-                  <p className="text-xs text-white/50 mb-2">
+                <div className="p-5 rounded-2xl surface-card">
+                  <h3 className="text-sm font-semibold text-muted-foreground mb-3">Reporting History</h3>
+                  <p className="text-xs text-muted-foreground mb-2">
                     Reported to authorities: {report.reporting_history.reported_to_anyone ? "Yes" : "Not yet"}
                   </p>
                   {report.reporting_history.reports.map((r, i) => (
-                    <div key={i} className="p-3 rounded-xl mb-2" style={{ background: 'rgba(255,255,255,0.03)' }}>
-                      <p className="text-xs text-white/70">Reported to: {r.reported_to}</p>
-                      <p className="text-xs text-white/40">When: {r.when} → Response: {r.response}</p>
-                      {r.outcome && <p className="text-xs text-white/30">Outcome: {r.outcome}</p>}
+                    <div key={i} className="p-3 rounded-xl mb-2 bg-secondary/50">
+                      <p className="text-xs text-foreground/70">Reported to: {r.reported_to}</p>
+                      <p className="text-xs text-muted-foreground">When: {r.when} → Response: {r.response}</p>
+                      {r.outcome && <p className="text-xs text-muted-foreground/60">Outcome: {r.outcome}</p>}
                     </div>
                   ))}
                 </div>
@@ -787,17 +774,16 @@ END OF REPORT — SecureVoice Confidential
             {/* ===== LEGAL DOCS TAB ===== */}
             {activeTab === "legaldocs" && (
               <motion.div key="legaldocs" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="space-y-5">
-                <div className="p-5 rounded-2xl" style={{ background: 'rgba(13,18,37,0.7)', border: '1px solid rgba(129,140,248,0.12)' }}>
-                  <h3 className="text-sm font-semibold text-white/80 mb-4 flex items-center gap-2">
-                    <Building className="w-4 h-4 text-[#818cf8]" /> Official Document Generator
+                <div className="p-5 rounded-2xl surface-card">
+                  <h3 className="text-sm font-semibold text-foreground/80 mb-4 flex items-center gap-2">
+                    <Building className="w-4 h-4 text-primary" /> Official Document Generator
                   </h3>
                   
                   <div className="flex flex-col md:flex-row gap-4 mb-6">
                     <select 
                       value={legalDocType}
                       onChange={(e) => setLegalDocType(e.target.value as any)}
-                      className="px-4 py-2.5 rounded-xl text-sm font-medium outline-none cursor-pointer border transition-colors flex-1"
-                      style={{ background: 'rgba(0,0,0,0.3)', color: 'white', borderColor: 'rgba(255,255,255,0.1)' }}
+                      className="px-4 py-2.5 rounded-xl text-sm font-medium outline-none cursor-pointer border transition-colors flex-1 input-surface"
                     >
                       <option value="fir">FIR (First Information Report)</option>
                       <option value="complaint">Police Complaint</option>
@@ -808,8 +794,7 @@ END OF REPORT — SecureVoice Confidential
                     <button 
                       onClick={generateLegalDoc} 
                       disabled={isGeneratingDoc}
-                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-50 min-w-[200px]"
-                      style={{ background: 'linear-gradient(135deg, #6366f1, #818cf8)', color: 'white' }}
+                      className="inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all hover:opacity-90 disabled:opacity-50 min-w-[200px] bg-primary text-primary-foreground"
                     >
                       {isGeneratingDoc ? (
                         <><Loader2 className="w-4 h-4 animate-spin" /> Generating...</>
@@ -822,18 +807,18 @@ END OF REPORT — SecureVoice Confidential
                   {generatedDoc && (
                     <div className="mt-8">
                        <div className="flex justify-between items-center mb-3">
-                         <h4 className="text-xs font-semibold text-white/50 uppercase tracking-wider">Generated Output</h4>
+                         <h4 className="text-xs font-semibold text-muted-foreground/50 uppercase tracking-wider">Generated Output</h4>
                          <div className="flex gap-2">
-                           <button onClick={handleCopyLegalDoc} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-white/5 hover:bg-white/10 text-white/70 transition flex items-center gap-1.5">
+                           <button onClick={handleCopyLegalDoc} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-secondary hover:bg-secondary/80 text-foreground/70 transition flex items-center gap-1.5">
                              <Copy className="w-3 h-3" /> Copy Text
                            </button>
-                           <button onClick={handleDownloadLegalPDF} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-[#818cf8]/10 hover:bg-[#818cf8]/20 text-[#818cf8] transition flex items-center gap-1.5 border border-[#818cf8]/20">
+                           <button onClick={handleDownloadLegalPDF} className="px-3 py-1.5 rounded-lg text-xs font-medium bg-primary/10 hover:bg-primary/20 text-primary transition flex items-center gap-1.5 border border-primary/20">
                              <Download className="w-3 h-3" /> Download PDF
                            </button>
                          </div>
                        </div>
                        
-                       <div className="p-6 rounded-xl whitespace-pre-wrap text-sm text-white/80 leading-relaxed font-serif" style={{ background: 'rgba(0,0,0,0.4)', border: '1px solid rgba(255,255,255,0.05)', maxHeight: '600px', overflowY: 'auto' }}>
+                       <div className="p-6 rounded-xl whitespace-pre-wrap text-sm text-foreground/80 leading-relaxed font-serif input-surface" style={{ maxHeight: '600px', overflowY: 'auto' }}>
                          {generatedDoc}
                        </div>
                     </div>
@@ -844,11 +829,10 @@ END OF REPORT — SecureVoice Confidential
           </AnimatePresence>
 
           {/* Footer */}
-          <div className="mt-8 p-4 rounded-xl flex items-start gap-3"
-            style={{ background: 'rgba(129,140,248,0.04)', border: '1px solid rgba(129,140,248,0.1)' }}>
-            <Shield className="w-4 h-4 text-[#818cf8]/60 mt-0.5 shrink-0" />
-            <p className="text-xs text-white/30 leading-relaxed">
-              <span className="text-white/50 font-medium">Confidential.</span>{" "}
+          <div className="mt-8 p-4 rounded-xl flex items-start gap-3 bg-primary/4 border border-primary/10">
+            <Shield className="w-4 h-4 text-primary/60 mt-0.5 shrink-0" />
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              <span className="text-foreground font-medium">Confidential.</span>{" "}
               This report was generated by JusticeFlow's AI Structure Engine. All data is encrypted. 
               {report.metadata && ` Analyzed ${report.metadata.fragment_count} fragments and ${report.metadata.evidence_count} evidence files.`}
             </p>
@@ -864,7 +848,7 @@ export default function ReportPage() {
   return (
     <Suspense fallback={
       <div className="min-h-screen flex items-center justify-center">
-        <div className="w-10 h-10 border-2 border-[#818cf8] border-t-transparent rounded-full animate-spin" />
+        <div className="w-10 h-10 border-2 border-primary border-t-transparent rounded-full animate-spin" />
       </div>
     }>
       <ReportContent />
